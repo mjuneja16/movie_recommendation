@@ -1,7 +1,22 @@
 #load required libraries
 library(plyr)
+library(RCurl)
+library(foreign)
+userData.url <- "https://raw.githubusercontent.com/mjuneja16/movie_recommendation/master/userData"
+userData <- getURL(userData.url)                
+userData <- read.csv(textConnection(userData),sep = "|", header =  FALSE)
 
-#import text files: userData, movieData, trainData and testData
+movieData.url <- "https://raw.githubusercontent.com/mjuneja16/movie_recommendation/master/movieData"
+movieData <- getURL(movieData.url)                
+movieData <- read.csv(textConnection(movieData),sep = "|", header =  FALSE)
+
+trainData.url <- "https://raw.githubusercontent.com/mjuneja16/movie_recommendation/master/trainData"
+trainData <- getURL(trainData.url)                
+trainData <- read.csv(textConnection(trainData),sep = "\t", header =  FALSE)
+
+testData.url <- "https://raw.githubusercontent.com/mjuneja16/movie_recommendation/master/testData"
+testData <- getURL(testData.url)                
+testData <- read.csv(textConnection(testData),sep = "\t", header =  FALSE)
 
 #column names for user dataset
 cols <- c("user_id", "age", "gender", "occupation", "zip_code")
